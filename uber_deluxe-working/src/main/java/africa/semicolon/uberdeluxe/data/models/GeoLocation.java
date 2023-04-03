@@ -25,49 +25,16 @@ public class GeoLocation {
     private String status = "success";
     private String continent = "africa";
     private String country = "nigeria";
+    private String state="lagos";
     private String region = "us";
     private String city = "lagos-city";
-    private String street = "oyinbgo";
+    private String street ;
     private String zip = "94043";
     private String latitude  ;
     private String longitude;
 
-    public static double generateLatitude(){
-        SecureRandom random = new SecureRandom();
-        double lat = random.nextInt(100,120);
-        return lat;
-    }
-
-    public double generateLongitude() {
-        SecureRandom random = new SecureRandom();
-        double lon = random.nextInt(120,130);
-        return lon;
-    }
 
 
-    public  void setLontitudeLongitude(){
-        SecureRandom random = new SecureRandom();
-     double   latitude = generateLatitude();
-     double  longitude = generateLongitude();
-
-        char [] goeFar = { 'B','Y','S','A' };
-        int i = random.nextInt(goeFar.length);
-        char receive = goeFar[i];
-        String take = String.valueOf(latitude);
-        String take2 = String.valueOf(longitude);
-        String coma = "-";
-       this.latitude = receive+coma+take;
-       this.longitude = receive+coma+take2;
-
-    }
-
-    public static void main(String[] args) {
-
-       GeoLocation geoLocation = new GeoLocation();
-        geoLocation.setLontitudeLongitude();
-
-        System.out.println(geoLocation.getLatitude() + " " + geoLocation.getLongitude());
-    }
 
 
 }

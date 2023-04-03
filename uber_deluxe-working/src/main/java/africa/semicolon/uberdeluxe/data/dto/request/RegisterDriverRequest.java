@@ -1,12 +1,21 @@
 package africa.semicolon.uberdeluxe.data.dto.request;
 
 
+import africa.semicolon.uberdeluxe.data.models.Address;
+import africa.semicolon.uberdeluxe.data.models.AppUser;
+import africa.semicolon.uberdeluxe.data.models.Gender;
+import africa.semicolon.uberdeluxe.data.models.Ride;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Set;
 
 import static africa.semicolon.uberdeluxe.util.AppUtilities.EMAIL_REGEX_STRING;
 
@@ -30,6 +39,12 @@ public class RegisterDriverRequest {
     @NotEmpty
     @NotNull
     private String password;
-    @NotNull(message = "please upload license image")
-    private MultipartFile licenseImage;
+    private Address address;
+    private Gender gender;
+    private int age;
+    private AppUser user;
+    private Set<Ride> ride;
+
+//    @NotNull(message = "please upload license image")
+//    private MultipartFile licenseImage;
 }

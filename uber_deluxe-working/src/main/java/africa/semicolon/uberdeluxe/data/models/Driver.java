@@ -1,9 +1,12 @@
 package africa.semicolon.uberdeluxe.data.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -11,6 +14,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Builder
+@Table(name="Driver")
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,10 +32,13 @@ public class Driver {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private BankInformation bankInformation;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
     private AppUser userDetails;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private GeoLocation driverLocation;
-    private String destination;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private GeoFencing geoFencing;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "Driver_Ride_id",referencedColumnName = "driver_ride_id")
+    private Set<Ride> ride;
 
 
 }
