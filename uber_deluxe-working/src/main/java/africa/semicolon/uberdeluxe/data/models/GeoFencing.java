@@ -19,7 +19,7 @@ public class GeoFencing {
     private String city = "lagos-city";
     private String street ;
     private String zip = "94043";
-    private String latitude = "800"  ;
+    private String latitude = "900"  ;
     private String longitude = "100";
 
 }

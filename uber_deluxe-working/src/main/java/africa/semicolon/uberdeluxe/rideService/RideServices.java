@@ -10,13 +10,13 @@ public class RideServices {
 //    PassengerResponse mappedPassenger = maptoPassengerResponse(passenger);
 //    }
 
-    public PassengerResponse maptoPassengerResponse(Passenger passenger){
-        PassengerResponse passengerR =  PassengerResponse.builder()
-                .name(passenger.getAppUser().getName()).phoneNumber
-                        (passenger.getPhoneNumber()).destination
-                        (passenger.getDestination()).currentLocation
-                        (passenger.getPickUpLocation()).build();
-        return passengerR;
-    }
+// passenger   public PassengerResponse maptoPassengerResponse(Passenger passenger){
+//        PassengerResponse passengerR =  PassengerResponse.builder()
+//                .name(passenger.getAppUser().getName()).phoneNumber
+//                        (passenger.getPhoneNumber()).destination
+//                        (passenger.getDestination()).currentLocation
+//                        (passenger.getPickUpLocation()).build();
+//        return passengerR;
+//    }
 
 }

@@ -1,5 +1,7 @@
 package africa.semicolon.uberdeluxe.googleMapProperties.Service;
 
+import africa.semicolon.uberdeluxe.data.models.Driver;
+import africa.semicolon.uberdeluxe.data.models.Passenger;
 import africa.semicolon.uberdeluxe.googleMapProperties.model.LocationB;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +15,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class GeoLocationService2 {
@@ -42,5 +46,21 @@ public LocationB getLocation(HttpServletRequest request) throws IOException {
     LocationB location = new LocationB(latitude, longitude);
       return   location;
 }
+    public boolean goeFencingCalculator(Driver driver, Passenger passenger) {
+        String[] shomolu = {"pedro", "akoka", "bajulaiye", "arowojobe"};
+        String[] yaba = {"Queenstreet", "commercial Avenue", "iwaya road", "tokunbo"};
+        String[] ikeja = {"allen avenue", "opebi road", "toying", "awolowo way"};
+        Map<String, String[]> localGoverment = new HashMap<>();
+        localGoverment.put("shomomu", shomolu);
+        localGoverment.put("yaba", yaba);
+        localGoverment.put("ikeja", ikeja);
+        for (Map.Entry<String, String[]> entry : localGoverment.entrySet()) {
+            String key = entry.getKey();
+            for (int i = 0; i < entry.getValue().length; i++) {
+            }
+        }
+
+        return false;
+    }
 
 }

@@ -157,4 +157,10 @@ public class PassengerServiceImpl implements PassengerService{
         registerResponse.setMessage("User Registration Successful");
         return registerResponse;
     }
+//    public Passenger setLatitudeLongitude(Passenger passenger) {
+//
+//
+//
+//
+//    }
 }
