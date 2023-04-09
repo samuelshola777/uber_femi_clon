@@ -1,6 +1,9 @@
 package africa.semicolon.uberdeluxe.data.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,8 +21,21 @@ public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String fullName;
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String phoneNumber;
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    private String password;
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @OneToOne(cascade = CascadeType.ALL)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Address address;
@@ -37,7 +53,7 @@ public class Driver {
     @OneToOne(cascade = {CascadeType.ALL})
     private DateK birthDateK;
    public void setAge(){
-        this.age = registrationDate.getYear() - birthDateK.getYear();
+        this.age = registrationDate.getYear() -  Integer.parseInt( birthDateK.getYear());
     }
 
 //    private String licenseId;

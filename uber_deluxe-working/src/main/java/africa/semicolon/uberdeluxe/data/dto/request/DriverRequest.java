@@ -13,7 +13,7 @@ public class DriverRequest {
     private Address address;
     private Gender gender;
     private RoleK roles;
-
+    private  String password;
     private DateK birthDateK;
     private int age;
 

@@ -1,4 +1,4 @@
-//package africa.semicolon.uberdeluxe.service;
+package africa.semicolon.uberdeluxe.service;//package africa.semicolon.uberdeluxe.service;
 //
 //import africa.semicolon.uberdeluxe.cloud.CloudService;
 //import africa.semicolon.uberdeluxe.data.dto.request.EmailNotificationRequest;
@@ -23,10 +23,20 @@
 //import java.util.HashSet;
 //import java.util.Optional;
 //
-//@Service
-//@AllArgsConstructor
-//@Slf4j
-//public class DriverServiceImpl implements DriverService{
+
+import africa.semicolon.uberdeluxe.data.dto.request.DriverRequest;
+import africa.semicolon.uberdeluxe.data.dto.request.RegisterDriverRequest;
+import africa.semicolon.uberdeluxe.data.dto.response.DriverResponse;
+import africa.semicolon.uberdeluxe.data.models.DateK;
+import africa.semicolon.uberdeluxe.data.models.Driver;
+import africa.semicolon.uberdeluxe.data.repositories.AddressRepository;
+import africa.semicolon.uberdeluxe.data.repositories.DatekRepository;
+import africa.semicolon.uberdeluxe.data.repositories.DriverRepository;
+import africa.semicolon.uberdeluxe.service.DriverService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 //
 //    private final DriverRepository driverRepository;
 //    private final CloudService cloudService;
@@ -92,4 +102,32 @@
 //    public void saveDriver(Driver driver) {
 //        driverRepository.save(driver);
 //    }
-//}
+@Service
+@AllArgsConstructor
+@Slf4j
+public class DriverServiceImpl implements DriverService {
+    private final DriverRepository driverRepository;
+    private final AddressRepository addressRepository;
+    private final DatekRepository datekRepository;
+    @Override
+    public DriverResponse registerAsDriver(DriverRequest driverRequest) {
+       Driver mappedDriver = mapResToDriver(driverRequest);
+
+    }
+
+
+    private Driver mapResToDriver(DriverRequest driverRequest){
+        Driver buildDriver = Driver.builder()
+                .fullName(driverRequest.getFullName())
+                .phoneNumber(driverRequest.getPhoneNumber())
+                .password(driverRequest.getPassword())
+                .address(driverRequest.getAddress())
+                .roles(driverRequest.getRoles())
+                .birthDateK(driverRequest.getBirthDateK())
+                .build();
+        return buildDriver;
+    }
+    private boolean checkIfAccountExist(Driver driver){
+
+    }
+}
