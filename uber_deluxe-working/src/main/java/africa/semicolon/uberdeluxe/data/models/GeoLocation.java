@@ -19,18 +19,8 @@ public class GeoLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String status = "success";
-    private String continent = "africa";
-    private String country = "nigeria";
-    private String state="lagos";
-    private String region = "us";
-    private String city = "lagos-city";
-    private String street ;
-    private String zip = "94043";
-    private String latitude  ;
-    private String longitude;
     @OneToOne
-    private GeoLocation tripEnverroment;
+    private GeoLocation tripEnviroment;
 
 
 

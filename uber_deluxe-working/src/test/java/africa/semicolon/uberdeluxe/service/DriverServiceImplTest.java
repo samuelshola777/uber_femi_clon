@@ -1,6 +1,7 @@
 package africa.semicolon.uberdeluxe.service;
 
 import africa.semicolon.uberdeluxe.data.dto.request.RegisterDriverRequest;
+import lombok.RequiredArgsConstructor;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,12 +14,11 @@ import java.io.IOException;
 
 import static africa.semicolon.uberdeluxe.util.AppUtilities.UBER_DELUXE_TEST_IMAGE;
 import static org.assertj.core.api.Assertions.assertThat;
-
+@RequiredArgsConstructor
 @SpringBootTest
 class DriverServiceImplTest {
 
-    @Autowired
-    private DriverService driverService;
+   private final DriverService driverService;
     private RegisterDriverRequest driverRequest;
     @BeforeEach
     void setUp() {
@@ -39,4 +39,7 @@ class DriverServiceImplTest {
 //        assertThat(response.isSuccess()).isTrue();
 //
 //    }
+
+
+
 }
