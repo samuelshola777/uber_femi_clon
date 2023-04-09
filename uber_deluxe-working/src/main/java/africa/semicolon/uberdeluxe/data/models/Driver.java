@@ -1,10 +1,7 @@
 package africa.semicolon.uberdeluxe.data.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,27 +14,30 @@ import java.util.Set;
 @Builder
 @Table(name="Driver")
 public class Driver {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String fullName;
     private String phoneNumber;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Address address;
     private Gender gender;
+    private RoleK roles;
+    private boolean isLoggedIn;
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "currentLocation_id",referencedColumnName = "currentLocation_id")
     private GeoFencing currentEnviroment;
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "Driver_Ride_id",referencedColumnName = "driver_ride_id")
     private Set<Ride> ride;
-    private RoleK roles;
-    private boolean isLoggedIn;
     private int age;
     private LocalDateTime registrationDate = LocalDateTime.now();
     @OneToOne(cascade = {CascadeType.ALL})
-    private Date birthDate;
-    private void setAge(){
-        this.age = registrationDate.getYear() - birthDate.getYear();
+    private DateK birthDateK;
+   public void setAge(){
+        this.age = registrationDate.getYear() - birthDateK.getYear();
     }
 
 //    private String licenseId;
