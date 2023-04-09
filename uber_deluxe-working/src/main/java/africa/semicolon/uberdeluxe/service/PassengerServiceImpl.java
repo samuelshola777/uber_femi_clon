@@ -5,11 +5,9 @@ import africa.semicolon.uberdeluxe.config.distance.DistanceConfig;
 import africa.semicolon.uberdeluxe.data.dto.request.BookRideRequest;
 import africa.semicolon.uberdeluxe.data.dto.request.LocationZ;
 import africa.semicolon.uberdeluxe.data.dto.request.RegisterPassengerRequest;
-import africa.semicolon.uberdeluxe.data.dto.response.ApiResponse;
-import africa.semicolon.uberdeluxe.data.dto.response.DistanceMatrixElement;
-import africa.semicolon.uberdeluxe.data.dto.response.GoogleDistanceResponse;
-import africa.semicolon.uberdeluxe.data.dto.response.RegisterResponse;
+import africa.semicolon.uberdeluxe.data.dto.response.*;
 import africa.semicolon.uberdeluxe.data.models.AppUser;
+import africa.semicolon.uberdeluxe.data.models.GeoLocation;
 import africa.semicolon.uberdeluxe.data.models.Passenger;
 import africa.semicolon.uberdeluxe.data.models.Role;
 import africa.semicolon.uberdeluxe.data.repositories.PassengerRepository;
@@ -163,4 +161,12 @@ public class PassengerServiceImpl implements PassengerService{
 //
 //
 //    }
+
+    public RideResponse bookRide(Passenger passenger){
+        GeoLocation currentLocation = new GeoLocation();
+        currentLocation.setStreet(passenger.getCurrentLocation().getStreet());
+String useToClosestDriver = currentLocation.getTripEnverroment().getStreet();
+return null;
+    }
+
 }

@@ -23,22 +23,26 @@ public class Driver {
     @OneToOne
     private Address address;
     private Gender gender;
-    private String licenseId;
-    private String licenseImage;
-    private int age;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Referee referee;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private BankInformation bankInformation;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonIgnore
-    private AppUser userDetails;
     @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "currentLocation_id",referencedColumnName = "currentLocation_id")
     private GeoFencing geoFencing;
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "Driver_Ride_id",referencedColumnName = "driver_ride_id")
     private Set<Ride> ride;
+    private RoleK roles;
+    private boolean isLoggedIn;
+    private int age;
+//    private String licenseId;
+//    private String licenseImage;
+//    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    private Referee referee;
+//    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    private BankInformation bankInformation;
+//    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @JsonIgnore
+//    private AppUser userDetails;
+
 
 
 }

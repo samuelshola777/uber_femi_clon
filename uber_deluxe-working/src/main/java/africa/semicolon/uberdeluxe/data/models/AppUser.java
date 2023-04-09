@@ -26,11 +26,12 @@ public class AppUser {
     private Long id;
     private String name;
     private String password;
-
     @Column(unique = true)
     private String email;
     private String profileImage;
     @Enumerated(EnumType.STRING)
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "passenger_Ride_id",referencedColumnName = "passenger_ride_id")
     private Set<Role> roles;
     private String createdAt;
     private Boolean isEnabled;
