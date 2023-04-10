@@ -7,6 +7,7 @@ import africa.semicolon.uberdeluxe.data.models.DateK;
 import africa.semicolon.uberdeluxe.data.models.Gender;
 import africa.semicolon.uberdeluxe.data.models.RoleK;
 import africa.semicolon.uberdeluxe.exception.DateException;
+import africa.semicolon.uberdeluxe.exception.DriverException;
 import lombok.RequiredArgsConstructor;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
@@ -161,7 +162,7 @@ driver5 = new DriverRequest();
     }
 
     @Test
- void testThatWeCanRegisterDriver(){
+ void testThatWeCanRegisterDriver() throws DriverException {
 
      driverService.registerAsDriver(driver1);
     }

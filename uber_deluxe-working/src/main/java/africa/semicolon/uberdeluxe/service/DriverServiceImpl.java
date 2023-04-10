@@ -29,13 +29,17 @@ import africa.semicolon.uberdeluxe.data.dto.request.RegisterDriverRequest;
 import africa.semicolon.uberdeluxe.data.dto.response.DriverResponse;
 import africa.semicolon.uberdeluxe.data.models.DateK;
 import africa.semicolon.uberdeluxe.data.models.Driver;
+import africa.semicolon.uberdeluxe.data.models.RoleK;
 import africa.semicolon.uberdeluxe.data.repositories.AddressRepository;
 import africa.semicolon.uberdeluxe.data.repositories.DatekRepository;
 import africa.semicolon.uberdeluxe.data.repositories.DriverRepository;
+import africa.semicolon.uberdeluxe.exception.DriverException;
 import africa.semicolon.uberdeluxe.service.DriverService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 //
 //    private final DriverRepository driverRepository;
@@ -109,9 +113,14 @@ public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
     private final AddressRepository addressRepository;
     private final DatekRepository datekRepository;
+
     @Override
-    public DriverResponse registerAsDriver(DriverRequest driverRequest) {
+    public DriverResponse registerAsDriver(DriverRequest driverRequest) throws DriverException {
        Driver mappedDriver = mapResToDriver(driverRequest);
+            if(checkIfAccountExist(mappedDriver)) throw new DriverException("Driver already exists");
+            datekRepository.save(mappedDriver.getBirthDateK());
+            addressRepository.save(mappedDriver.getAddress());
+            driverRepository.save(mappedDriver);
 
     }
 
@@ -128,6 +137,11 @@ public class DriverServiceImpl implements DriverService {
         return buildDriver;
     }
     private boolean checkIfAccountExist(Driver driver){
-
+       Optional<Driver> foundDriver =  driverRepository.findbyPhoneNumber(driver.getPhoneNumber());
+       Optional<Driver> nameFoundDriver = driverRepository.findbyFullName(driver.getFullName());
+       if (foundDriver.isPresent() && nameFoundDriver.isPresent() && driver.getRoles() == RoleK.DRIVER) {
+           return true;
+       }
+       return false;
     }
 }

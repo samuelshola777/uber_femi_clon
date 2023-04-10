@@ -5,6 +5,7 @@ import africa.semicolon.uberdeluxe.data.dto.request.RegisterDriverRequest;
 import africa.semicolon.uberdeluxe.data.dto.response.DriverResponse;
 import africa.semicolon.uberdeluxe.data.dto.response.RegisterResponse;
 import africa.semicolon.uberdeluxe.data.models.Driver;
+import africa.semicolon.uberdeluxe.exception.DriverException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
@@ -15,5 +16,5 @@ public interface DriverService {
 //
 //    void saveDriver(Driver driver);
 
-    DriverResponse registerAsDriver(DriverRequest driverRequest);
+    DriverResponse registerAsDriver(DriverRequest driverRequest) throws DriverException;
 }
